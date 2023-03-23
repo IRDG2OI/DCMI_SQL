@@ -1,12 +1,16 @@
+/* RTTP data_base Metadata auto-complete */
+
 DO $$
 DECLARE
 
 BEGIN
--- Creation d'une table de métadonnée
+
+    -- DROP TABLE metadata_dcmi_cp;
+
+-- ADD a new Table 
 
     CREATE TABLE IF NOT EXISTS metadata_dcmi_cp(
-    "id_metadata" SERIAL PRIMARY KEY,
-    "Identifier" TEXT,
+    "Identifier" TEXT PRIMARY KEY,
     "Title" TEXT,
     "Description" TEXT,
     "Subject" TEXT,
@@ -31,7 +35,8 @@ BEGIN
     INSERT INTO metadata_dcmi_cp ("Identifier")
      SELECT table_name  AS full_rel_name
         FROM information_schema.tables
-        WHERE table_schema not in ('pg_catalog', 'information_schema')
+        WHERE table_schema NOT IN ('pg_catalog', 'information_schema')
+        AND table_name NOT IN ('world','spatial_ref_sys','metadata_dcmi_cp','metadata_dcmi','metadata')
      UNION
         SELECT matviewname FROM pg_matviews
     ON CONFLICT ("Identifier") 
@@ -40,6 +45,10 @@ BEGIN
     -- Update values
     UPDATE metadata_dcmi_cp
     SET
+    "Subject" ='theme[General]:RTTP project,Pêche,DCF,Thon,Thon albacore,Thon obèse,FAD,Tagging,Baithaul,Tuna,Seine, Purse seine, canneur, banc libre, banc objet, DCP (FAD),objet flottant,stock assessment, fisheries_
+theme[Taxon]:Albacore, Thunnus albacares,Listao,Katsuwonus pelamis, Patudo,Thunnus obesus, Thon obèse,skipjack_
+theme[Observation]:marquage, tagging, OTC_
+theme[Area]:SWIO, Indian Ocean, océan Indien, Seychelles, Indian Ocean Tuna Tagging Programme, IOTTP, RTTP, canneur_',
     "Creator" = 'owner:secretariat@iotc.org_
 publisher:secretariat@iotc.org_
 originator:fabio.fiorellato@iotc.org_
