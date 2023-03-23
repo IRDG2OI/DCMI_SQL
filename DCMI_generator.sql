@@ -1,6 +1,5 @@
 DO $$
 DECLARE
-    data_name TEXT;
 
 BEGIN
 -- Creation d'une table de métadonnée
@@ -72,3 +71,4 @@ variable:timestamp[timestamp]',
     metadata_dcmi_cp."Identifier");
 
 END $$;
+
