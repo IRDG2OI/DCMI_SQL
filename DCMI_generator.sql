@@ -27,7 +27,7 @@ BEGIN
     ALTER TABLE metadata_dcmi_cp DROP CONSTRAINT IF EXISTS metadata_dcmi_cp_constraint;
     ALTER TABLE metadata_dcmi_cp ADD CONSTRAINT metadata_dcmi_cp_constraint UNIQUE ("Identifier");
 
-    -- Insert table names 
+    -- Insert table names & materialized views
     INSERT INTO metadata_dcmi_cp ("Identifier")
      SELECT table_name  AS full_rel_name
         FROM information_schema.tables
@@ -37,7 +37,7 @@ BEGIN
     ON CONFLICT ("Identifier") 
     DO NOTHING;
 
-    -- Update info using table names as key
+    -- Update values
     UPDATE metadata_dcmi_cp
     SET
     "Creator" = 'owner:secretariat@iotc.org_
