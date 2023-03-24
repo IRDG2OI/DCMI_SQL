@@ -1,5 +1,3 @@
-/* RTTP data_base Metadata auto-complete */
-
 DO $$
 DECLARE
 
@@ -45,6 +43,8 @@ BEGIN
     -- Update values
     UPDATE metadata_dcmi_cp
     SET
+    "Title" =  metadata_dcmi_cp."Identifier",
+    "Description" =  metadata_dcmi_cp."Identifier",
     "Subject" ='theme[General]:RTTP project,Pêche,DCF,Thon,Thon albacore,Thon obèse,FAD,Tagging,Baithaul,Tuna,Seine, Purse seine, canneur, banc libre, banc objet, DCP (FAD),objet flottant,stock assessment, fisheries_
 theme[Taxon]:Albacore, Thunnus albacares,Listao,Katsuwonus pelamis, Patudo,Thunnus obesus, Thon obèse,skipjack_
 theme[Observation]:marquage, tagging, OTC_
@@ -57,6 +57,7 @@ principalInvestigator:secretariat@coi-ioc.org_
 principalInvestigator:secretariat@iotc.org',
     "Type" = 'Dataset',
     "Language" = 'eng',
+    "TemporalCoverage" = '2007/2013',
     "Relation" = 'thumbnail:Aperçu@https://drive.google.com/uc?id=1YgbiwX4zQ7mp7RKuZChEXhMO2sqlc72O_
 thumbnail:spatial_extent@https://drive.google.com/uc?id=11x0bkB2iio9knd3k4UT-tgv_wIYq1-Oe_
 http:Feature_Type@https://docs.google.com/spreadsheets/d/1rLhq_FHFNOdCjgU-EoyfOiGofe3uc1_xGfx8ybitaJg/edit?usp=sharing_
@@ -70,7 +71,7 @@ uploadType:dbquery_
 sql:SELECT * FROM public.table_name_
 featureType:rttp_dbquery_
 upload:true_
-layername: table_name
+layername: table_name_
 geometry:geom,Point_
 style:point_
 spatialRepresentationType:vector_
@@ -80,4 +81,3 @@ variable:timestamp[timestamp]',
     metadata_dcmi_cp."Identifier");
 
 END $$;
-
