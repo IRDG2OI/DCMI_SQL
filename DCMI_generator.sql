@@ -1,3 +1,5 @@
+/* create and auto-complete a metadata table according to Dublin Core specifications */
+
 DO $$
 DECLARE
 
