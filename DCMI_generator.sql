@@ -3,7 +3,7 @@ DECLARE
 
 BEGIN
 
-   DROP TABLE metadata_dcmi;
+-- DROP TABLE metadata_dcmi;
 
 -- ADD a new Table 
 
