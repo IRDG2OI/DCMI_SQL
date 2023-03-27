@@ -3,11 +3,11 @@ DECLARE
 
 BEGIN
 
-    -- DROP TABLE metadata_dcmi_cp;
+   DROP TABLE metadata_dcmi;
 
 -- ADD a new Table 
 
-    CREATE TABLE IF NOT EXISTS metadata_dcmi_cp(
+    CREATE TABLE IF NOT EXISTS metadata_dcmi(
     "Identifier" TEXT PRIMARY KEY,
     "Title" TEXT,
     "Description" TEXT,
@@ -26,25 +26,20 @@ BEGIN
     );
 
     -- ADD constraint on Identifier 
-    ALTER TABLE metadata_dcmi_cp DROP CONSTRAINT IF EXISTS metadata_dcmi_cp_constraint;
-    ALTER TABLE metadata_dcmi_cp ADD CONSTRAINT metadata_dcmi_cp_constraint UNIQUE ("Identifier");
+    ALTER TABLE metadata_dcmi DROP CONSTRAINT IF EXISTS metadata_dcmi_constraint;
+    ALTER TABLE metadata_dcmi ADD CONSTRAINT metadata_dcmi_constraint UNIQUE ("Identifier");
 
-    -- Insert table names & materialized views
-    INSERT INTO metadata_dcmi_cp ("Identifier")
-     SELECT table_name  AS full_rel_name
-        FROM information_schema.tables
-        WHERE table_schema NOT IN ('pg_catalog', 'information_schema')
-        AND table_name NOT IN ('world','spatial_ref_sys','metadata_dcmi_cp','metadata_dcmi','metadata')
-     UNION
-        SELECT matviewname FROM pg_matviews
+    -- Insert table names & materialized views & views
+    INSERT INTO metadata_dcmi ("Identifier")
+    SELECT "f_table_name" FROM geometry_columns WHERE f_table_name NOT IN ('world', 'metadata_dcmi')
     ON CONFLICT ("Identifier") 
     DO NOTHING;
 
     -- Update values
-    UPDATE metadata_dcmi_cp
+    UPDATE metadata_dcmi
     SET
-    "Title" =  metadata_dcmi_cp."Identifier",
-    "Description" =  metadata_dcmi_cp."Identifier",
+    "Title" =  metadata_dcmi."Identifier",
+    "Description" =  metadata_dcmi."Identifier",
     "Subject" ='theme[General]:RTTP project,Pêche,DCF,Thon,Thon albacore,Thon obèse,FAD,Tagging,Baithaul,Tuna,Seine, Purse seine, canneur, banc libre, banc objet, DCP (FAD),objet flottant,stock assessment, fisheries_
 theme[Taxon]:Albacore, Thunnus albacares,Listao,Katsuwonus pelamis, Patudo,Thunnus obesus, Thon obèse,skipjack_
 theme[Observation]:marquage, tagging, OTC_
@@ -78,6 +73,6 @@ spatialRepresentationType:vector_
 attribute:schoolnumber[schoolnumber],cruisenumber[cruisenumber]_
 variable:timestamp[timestamp]',
 'table_name',
-    metadata_dcmi_cp."Identifier");
+    metadata_dcmi."Identifier");
 
 END $$;
