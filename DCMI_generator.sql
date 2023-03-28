@@ -36,7 +36,6 @@ BEGIN
     ALTER TABLE metadata_dcmi DROP CONSTRAINT IF EXISTS metadata_dcmi_constraint;
     ALTER TABLE metadata_dcmi ADD CONSTRAINT metadata_dcmi_constraint UNIQUE ("Identifier");
 
-
     -- Insert table names & materialized views & views
     INSERT INTO metadata_dcmi ("Identifier")
     SELECT "f_table_name" FROM geometry_columns WHERE f_table_name NOT IN ('world', 'metadata_dcmi')
@@ -83,7 +82,7 @@ variable:timestamp[timestamp]',
 'table_name',
     metadata_dcmi."Identifier");
 
-
+    -- Notify user
     FOREACH t IN ARRAY geog_tables
     LOOP
         RAISE WARNING '% has been ignored : type is geography unstead of geometry', t;
