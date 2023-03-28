@@ -1,14 +1,20 @@
-/* Create and auto-complete a metadata table according to Dublin Core specifications */
+/* Create and auto-complete a metadata table according to Dublin Core specifications 
+on Postgres - Postgis database*/
 
 DO $$
+
 DECLARE
+    
+    geog_tables TEXT[]:= (SELECT "f_table_name" FROM geography_columns);
 
 BEGIN
 
--- DROP TABLE metadata_dcmi;
+    -- DROP TABLE metadata_dcmi;
 
--- ADD a new Table 
+    -- ADD temporary table
+    
 
+    -- ADD a new Table 
     CREATE TABLE IF NOT EXISTS metadata_dcmi(
     "Identifier" TEXT PRIMARY KEY,
     "Title" TEXT,
@@ -30,6 +36,7 @@ BEGIN
     -- ADD constraint on Identifier 
     ALTER TABLE metadata_dcmi DROP CONSTRAINT IF EXISTS metadata_dcmi_constraint;
     ALTER TABLE metadata_dcmi ADD CONSTRAINT metadata_dcmi_constraint UNIQUE ("Identifier");
+
 
     -- Insert table names & materialized views & views
     INSERT INTO metadata_dcmi ("Identifier")
@@ -60,7 +67,7 @@ thumbnail:spatial_extent@https://drive.google.com/uc?id=11x0bkB2iio9knd3k4UT-tgv
 http:Feature_Type@https://docs.google.com/spreadsheets/d/1rLhq_FHFNOdCjgU-EoyfOiGofe3uc1_xGfx8ybitaJg/edit?usp=sharing_
 http:Feature_Attribute@https://docs.google.com/spreadsheets/d/1CfLVB4grDyl3USSz6YPuAmdPQyEGmYRm56LvvgcXIxs/edit?usp=sharing',
     "Rights" = 'accessConstraint:Access to the data is restricted, contact the creator for an access request',
-    "Data" = REPLACE('access:googledrive_
+    "Data" = REPLACE('access:default_
 source:table_name.sql_
 sourceType:dbquery_
 uploadSource:table_name_
@@ -69,12 +76,17 @@ sql:SELECT * FROM public.table_name_
 featureType:rttp_dbquery_
 upload:true_
 layername: table_name_
-geometry:geom,Point_
+geometry:geom,Point_ 
 style:point_
 spatialRepresentationType:vector_
 attribute:schoolnumber[schoolnumber],cruisenumber[cruisenumber]_
 variable:timestamp[timestamp]',
 'table_name',
     metadata_dcmi."Identifier");
+
+    FOR t in geog_tables
+    LOOP
+        RAISE WARNING " % has been ignored : data with type 'geography' are not supported on geoserver < 2.1. ", t;
+    END LOOP;
 
 END $$;
