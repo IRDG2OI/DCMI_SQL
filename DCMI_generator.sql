@@ -46,7 +46,7 @@ BEGIN
     UPDATE metadata_dcmi
     SET
     "Title" =  metadata_dcmi."Identifier",
-    "Description" =  metadata_dcmi."Identifier",
+    "Description" =  REPLACE(metadata_dcmi."Identifier", '_', ' '),
     "Subject" ='theme[General]:RTTP project,Pêche,DCF,Thon,Thon albacore,Thon obèse,FAD,Tagging,Baithaul,Tuna,Seine, Purse seine, canneur, banc libre, banc objet, DCP (FAD),objet flottant,stock assessment, fisheries_
 theme[Taxon]:Albacore, Thunnus albacares,Listao,Katsuwonus pelamis, Patudo,Thunnus obesus, Thon obèse,skipjack_
 theme[Observation]:marquage, tagging, OTC_
