@@ -5,14 +5,13 @@ DO $$
 
 DECLARE
     
-    geog_tables TEXT[]:= (SELECT "f_table_name" FROM geography_columns);
+    -- Get tables with geography as type 
+    geog_tables TEXT[]:= (SELECT array["f_table_name"] FROM geography_columns);
+    t TEXT;
 
 BEGIN
 
     -- DROP TABLE metadata_dcmi;
-
-    -- ADD temporary table
-    
 
     -- ADD a new Table 
     CREATE TABLE IF NOT EXISTS metadata_dcmi(
@@ -84,9 +83,10 @@ variable:timestamp[timestamp]',
 'table_name',
     metadata_dcmi."Identifier");
 
-    FOR t in geog_tables
+
+    FOREACH t IN ARRAY geog_tables
     LOOP
-        RAISE WARNING " % has been ignored : data with type 'geography' are not supported on geoserver < 2.1. ", t;
+        RAISE WARNING '% has been ignored : type is geography unstead of geometry', t;
     END LOOP;
 
 END $$;
