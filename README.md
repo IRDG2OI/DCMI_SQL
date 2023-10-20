@@ -14,6 +14,6 @@ This code was produced as part of the G2OI Interreg V project Co-financed by the
 	<img height=120  width=198  src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg">
 	<img  src="https://upload.wikimedia.org/wikipedia/fr/thumb/2/22/Republique-francaise-logo.svg/512px-Republique-francaise-logo.svg.png?20201008150502"  height=120  width=140 >
 	<img  height=120  width=260  src="https://upload.wikimedia.org/wikipedia/fr/3/3b/Logolareunion.png">
-	<img height=82  width=220  src="https://regionreunion.com/IMG/jpg/interreg_vi_fr.jpg">
+	<img height=50  width=200  src="https://regionreunion.com/IMG/jpg/interreg_vi_fr.jpg">
 </div>
 <br>
