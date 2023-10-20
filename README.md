@@ -8,7 +8,7 @@ The result is a table that can be used as input for [Geoflow process](https://gi
 This script helps automate the creation and population of a metadata table following Dublin Core specifications in a Postgres-PostGIS database, providing standardized metadata for the database objects.
 
 
-This code was produced as part of the G2OI project Co-financed by the European Union, the French State and the Réunion Region.
+This code was produced as part of the G2OI Interreg V project Co-financed by the European Union, the French State and the Réunion Region.
 
 <div  style="float:left;">
 	<img height=120  width=198  src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg">
