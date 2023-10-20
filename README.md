@@ -1,7 +1,6 @@
 # DCMI_SQL
 
-
-###Script Description
+### Script Description
 
 The following script is designed to create and auto-complete a metadata table according to Dublin Core specifications on a Postgres-PostGIS database.
 The result is a table that can be used as input for [Geoflow process](https://github.com/r-geoflow/geoflow).
