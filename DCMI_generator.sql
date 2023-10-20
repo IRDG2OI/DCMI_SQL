@@ -1,3 +1,4 @@
+--Developped by Namik SCHERZL for the Interreg V G2OI Project in 2023
 /* Create and auto-complete a metadata table according to Dublin Core specifications 
 on Postgres - Postgis database*/
 
