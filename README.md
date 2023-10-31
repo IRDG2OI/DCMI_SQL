@@ -1,4 +1,5 @@
 # DCMI_SQL
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10057312.svg)](https://doi.org/10.5281/zenodo.10057312)
 
 ### Script Description
 
